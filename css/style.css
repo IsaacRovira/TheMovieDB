@@ -1,0 +1,308 @@
+* {
+    box-sizing: border-box;    
+}
+
+#contenedor{	
+	background-color:black;
+	align-self: center;
+	max-width: 900px;	
+}
+
+.col-1{width: 8.33%;}
+.col-2{width: 16.66%;}
+.col-3{width: 25%;}
+.col-4{width: 33.33%;}
+.col-5{width: 41.66%;}
+.col-6{width: 50%;}
+.col-7{width: 58.33%;}
+.col-8{width: 66.66%;}
+.col-9{width: 75%;}
+.col-10{width: 83.33%;}
+.col-11{width: 91.66%;}
+.col-12{width: 100%;}
+
+[class*="col-"]{
+    float: left;
+    padding: 5px;
+    border: none;
+}
+
+.row::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.header{
+	display: block;
+	opacity: 1.0;
+	color:transparent;
+    padding: 0% 1% 0% 1%;     
+	background: -webkit-linear-gradient(0deg, #01d277, #081c24);
+	background: -moz-linear-gradient(0deg, #01d277, #081c24);
+	background: -o-linear-gradient(0deg, #01d277, #081c24);
+	background: linear-gradient(90deg, #01d277, #081c24);
+}
+.title{
+	display: inline-block;
+	float:left;
+	color: #081c24;
+}
+
+#logo_img:hover{
+   opacity: 0.2;
+    cursor:pointer;	
+}
+
+#logo_img{	
+	width:10%;
+	padding: 1%;
+    margin: 0% 0% 0% 5%;  
+	border: none;
+    max-width: 40%;
+	float:right;
+}
+
+.botones {
+    max-height: 100px;
+    max-width: 100px;    
+}
+
+.menu{
+    width: 100%;
+    padding: 1% 5% 1% 5%;
+    margin: 1% 0% 1% 0%;
+    display: block;
+}
+
+.boton{		
+	width: 20%;
+	margin: 0%;
+	padding: 0%;
+    display: inline-block;        	
+    text-align: center;
+	color: white;
+	background-color: transparent;    
+}
+
+#ant{
+	margin-right: 25%;
+	background-color: transparent;
+}
+#sig{
+	margin-left: 25%;
+	background-color: transparent;
+}
+
+.boton:hover {
+   opacity: 0.5;
+    cursor:pointer;
+}
+
+.pic {
+    padding: 0;
+    margin: 0;        
+    width: 50%;
+		
+}
+
+#coverpic {
+	display: inline-block;	
+    padding: 0;
+    margin: 0%;    
+    max-width: 100%;
+    max-height: auto;	
+}
+
+.descp{	
+	color: white;
+    margin: 1% 0% 0% 10px;
+    display: inline-block;   
+    text-align: left;
+    width: 48%;
+}
+
+#fecha{
+	margin: 0% 0% 5% 10%;
+	display: block;
+	float: left
+}
+
+#valoracion{
+	display: block;
+	float:right;
+	margin: 0% 5% 0% 10%;
+	display: block;
+}
+#sinopsis{
+	margin: 1% 0% 0% 0%;
+	display:inline-block;
+	text-align: justify;
+}
+
+#info{	
+	display: block;
+	margin-top: 99%
+}
+
+.footer{
+	display: block;
+	margin: 0%;
+	width: 100%;
+	background-color: #081c24;
+	color: white;
+	font-size: 75%;	
+}
+
+.logo{
+	float: left;
+	padding: 0%;
+	margin: 0%;
+}
+
+.footer_text{
+	margin: -0.1% 1% -0.2% 1%;
+	padding: 0% 0% 0% 0%;
+}
+
+@media only screen and (max-width: 500px){
+	body{}	
+	.header{
+		display: block;				
+		padding: 0% 1% 0% 1%;color:transparent;
+		padding: 0% 1% 0% 1%;     
+		background: -webkit-linear-gradient(0deg, #01d277, #081c24);
+		background: -moz-linear-gradient(0deg, #01d277, #081c24);
+		background: -o-linear-gradient(0deg, #01d277, #081c24);
+		background: linear-gradient(90deg, #01d277, #081c24);
+	}
+	.title{
+		display: inline-block;
+		float:left;
+		font-size: 0%;
+		
+	}
+	#logo_img:hover{
+		opacity: 0.2;
+		cursor:pointer;	
+	}
+	#logo_img{
+		width: 5%;
+		float: right;
+		padding: 0%;
+		margin: 0%;	
+	}
+	
+	.menu{
+		display: inline-block;
+		align-self: center;
+		margin: 1%;
+		padding: 0% 10% 0% 10%;		
+		display: block;
+		background-color: black;
+	}
+	
+
+	.boton{		
+		width: 20%;
+		margin: 0%;
+		padding: 0%;
+		display: inline-block;        	
+		text-align: center;
+		color: white;
+		background-color: transparent;    
+	}
+
+	#ant{
+		float:left;
+		margin: 0%
+		padding: 0%;
+		font-size:75%;		
+		background-color: transparent;
+	}
+	#sig{
+		float:right;
+		font-size:75%;
+		padding: 0%;
+		margin: 0%;
+		background-color: transparent;
+	}
+
+	.boton:hover {	   
+		cursor:pointer;
+		font-weight: bold;
+	}
+	.pic {
+		padding: 0;
+		margin: 0;        
+		width: 100%;
+	}
+	
+	#coverpic {
+	display: inline-block;	
+    padding: 0;
+    margin: 0%;    
+    max-width: 100%;
+    max-height: auto;	
+	}
+
+	.descp{	
+		color: white;
+		margin: 0% 0% 0% 0px;
+		display: block;				
+		width: 100%;
+	}
+	#titulo{
+		font-size: 0%;
+		text-align: center;
+	}
+	
+	#varios{
+		font-size: 60%;
+		text-align: justify;
+	}
+	#fecha{
+		margin: 0% 0% 5% 10%;
+		display: block;
+		float: left
+	}
+
+	#valoracion{
+		display: block;
+		float:right;
+		margin: 0% 5% 0% 10%;
+		display: block;
+	}
+	#sinopsis{
+		margin: 1% 0% 0% 0%;
+		display:inline-block;
+		text-align: justify;
+	}
+	#sinopsis_b{
+		display: none;	
+	}
+	#info{
+		font-size: 5%;
+		margin-top: 1%
+	}
+	.footer{
+		display: block;
+		margin: 0%;
+		width: 100%;
+		background-color: #081c24;
+		color: white;
+		font-size: 10%;	
+	}
+
+	.logo{
+		float: left;
+		padding: 0%;
+		margin: 0%;
+	}
+
+	.footer_text{
+		margin: -0.1% 1% -0.2% 1%;
+		padding: 0% 0% 0% 0%;
+	}
+
+}

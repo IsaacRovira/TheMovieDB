@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="The Film Finder Company" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Isaac Rovira" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--
+<style>
+.movie {
+    float: left;
+    margin: 5px;
+    padding: 15px;
+    max-width: 300px;
+    height: 300px;
+    border: 1px solid black;
+}
+</style>
+-->
+</head>
+<body>
+    <script src="js/main.js"></script>	
+	<div id="contenedor">
+    <div class = "header">
+        <div class="row">
+            <div class="header col-12">				
+				<div class="title"><h1>The Film Finder</h1></div>
+				<img src="img/293x302-powered-by-square-green.png" id="logo_img" onclick="loadfilms();">
+            </div>        
+        </div>
+    </div>
+        <div class="row">
+            <div class="menu col-12">                    
+				<div class = "boton" id="ant" onclick="Anterior();">				
+					ANTERIOR
+				</div>
+				<div class = "boton" id="sig" onclick="Siguiente()";>
+					SIGUIENTE
+				</div>
+            </div>
+        </div>    
+        <div class="row">    
+            <div class="pic col-6" id="pic">				
+                <img src="" alt="Film cover here1" id="coverpic" class="picture">
+            </div>
+            <div class="descp col-12">
+                    <div id="titulo"></div>
+					<div id="varios">Año; Tipo;</div>
+                    <div id="sinopsis">Sinopsis</div>
+					<div id="info" href="">+Info</div>
+            </div>
+        </div>
+		<div class="row">
+			<div class="footer col-12">				
+				<p class="footer_text"><small>Powered by The Movie DB API.</small></p>
+				<p class="footer_text"><small>Created by Isaac Rovira</small></p>
+				<p class="footer_text"><small>IFP - DAW (3º Semestre 2017) - Desarrollo en entorno cliente.</small></p>
+                </div>
+			</div>
+		</div>
+	</div>
+</body>
+    <script type="text/javascript">
+        <!--
+        getConfig();
+        loadfilms();
+        /*alert(config['images']['secure_base_url'] + config['images']['poster_sizes'][6] + peliculas['results'][indice]['poster_path']);*/
+        -->   
+    </script>
+</html>
