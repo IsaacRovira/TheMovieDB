@@ -32,6 +32,7 @@
 				</div>
 					<div class = "boton col-3" id="ant" onclick="Anterior();"><i class="fa fa-caret-left" aria-hidden="true"></i></div>
 					<div class = "boton col-3" id="sig" onclick="Siguiente();"><i class="fa fa-caret-right" aria-hidden="true"></i></div>
+					<p id="totpag">Pag: </p><br><p id="totfilms">Peliculas: </p>
 			</div>
         </div>	
     <div class="row">
@@ -44,15 +45,16 @@
 				<div class="col-13" id="titulo"></div><br>
 				<div class="col-13" id="varios">Año; Tipo;</div><br>
 				<div class="col-13" id="sinopsis">Sinopsis</div><br>
-				<div class="col-3" id="info" href="">+Info</div>
+				<div class="col-3" id="info"><i class="fa fa-info-circle" aria-hidden="true" onclick="info();"></i></div>
         </div>
 		</div>
 	</div>
 	<div class="row">		
-		<div class="footer col-20">			
+		<div class="footer col-20">
+			<div class="footer-text" id="buscar">Buscar: <input type="text" id="btitulo" onblur="fin();" onchange="comprobar();"></div>
 			<p class="footer_text"><small>Powered by The Movie DB API.</small></p>
 			<p class="footer_text"><small>Created by Isaac Rovira</small></p>
-			<p class="footer_text"><small>IFP - DAW (3º Semestre 2017) - Desarrollo en entorno cliente.</small></p>
+			<p class="footer_text"><small>IFP - DAW (3º Semestre 2017) - Desarrollo en entorno cliente.</small></p>				
 		</div>
 	</div>
 	</div>	

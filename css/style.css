@@ -56,6 +56,16 @@ body{
 	background: linear-gradient(90deg, #01d277, #081c24);
 	*/
 }
+#totpag{
+	display: inline-block;
+	font-size: 0.8em;
+	color:white;
+}
+#totfilms{
+	display: inline-block;
+	font-size: 0.8em;
+	color:white;
+}
 .title{	
 	float:left;
 	padding: 0;
@@ -187,6 +197,13 @@ body{
 	position: relative;
 	display: block;
 	text-align: left;
+	color:white;
+}
+#info:hover{
+	opacity: 0.7;
+}
+#info:active{
+	opacity: 0.3;
 }
 
 .footer{	
@@ -206,6 +223,14 @@ body{
 .footer_text{
 	margin: -0.1% 1% -0.2% 1%;
 	padding: 0% 0% 0% 0%;
+}
+#buscar{	
+	margin-bottom: 2em;
+	margin-right: 2em;
+	
+	display: block;
+	float: right;
+	
 }
 
 @media only screen and (max-width: 850px){

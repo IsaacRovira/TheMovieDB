@@ -27,6 +27,7 @@ var xhttp;
 var worker;
 var w_bg_pics_update;
 var w_bg_pics_load;
+var w_comp;
 var totPag = 0;
 var totFilms = 0;
 
@@ -121,7 +122,14 @@ function actualizar() {
 	/*Imagen1*/
 	text = config['images']['secure_base_url'] + config['images']['poster_sizes'][6] + peliculas[pag]['results'][indice]['poster_path'];
 	document.getElementById('pic').setAttribute("src", text);
-	//document.getElementById('contenedor').style.backgroundImage = "url('"+text+"')";
+	//document.getElementById('contenedor').style.backgroundImage = "url('"+text+"')";	
+}
+
+function info(){
+	//+Info
+	var text = "https://www.themoviedb.org/movie/"+peliculas[pag]['results'][indice]['id'] + peliculas[pag]['results'][indice]['original_title'];	
+	window.blur();
+	window.open(text, "+Info", "toolbar=0,titlebar=0", false);
 }
 
 function randomfilm(){
@@ -192,10 +200,9 @@ function Siguiente() {
 
 //Boton anterior
 function Anterior() {
-	if(indice === 0){
-		if(pag === 0){			
-			pag = peliculas.length-1;
-			
+	if(indice == 0){
+		if(pag == 0){			
+			pag = peliculas.length-1;			
 		}else{
 			pag--;
 		}		
@@ -209,7 +216,7 @@ function Anterior() {
 //Cargamos la primera pagina de pelicualas. Las demas con un worker...
 function loadfilms(){	
 	xhttp = new XMLHttpRequest();	
-	xhttp.open("GET", "https://api.themoviedb.org/4/list/1?api_key=23cf888d2154b7ea3b81b691334ebcde",false);
+	xhttp.open("GET", "https://api.themoviedb.org/4/list/1?language=es-ES&api_key=23cf888d2154b7ea3b81b691334ebcde",false);
 	
 	xhttp.send();
 
@@ -227,6 +234,23 @@ function loadfilms(){
 	actualizar();
 }
 
+function comprobar(){
+	w_comp = new Worker('js/comparar.js');
+	var x = document.getElementById('btitulo');
+	w_comp.postMessage(x.nodeValue);
+	
+	w_comp.onmessage=function(event){
+		if(!event.data){
+			alert("Estoy funcionando");
+			x.setAttribute("color","red");
+			w_comp.terminate();
+			w_comp = undefined;
+		}
+		w_comp.terminate();
+		w_comp = undefined;
+	}
+}
+
 //Verificamos que podemos lanzar un worker.
 if(typeof(Worker) !== "undefined"){
 	
@@ -239,7 +263,9 @@ if(typeof(Worker) !== "undefined"){
 		peliculas.push(event.data);
 		totPag = peliculas.length;		
 		totFilms += peliculas[totPag-1]['results'].length;
-		if(totPag == 50){
+		document.getElementById('totpag').innerHTML = "Paginas: "+totPag;
+		document.getElementById('totfilms').innerHTML = "Peliculas: "+totFilms;
+		if(totPag == 500){
 			worker.terminate();
 			worker = undefined;			
 		}
