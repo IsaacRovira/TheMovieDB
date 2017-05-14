@@ -86,16 +86,24 @@ function genero(genres_id, metodo){
 //Introduce número de estrellas según la puntuación
 function estrella(numero){
 	estrellas="";
-	for(n=0; n<numero/2; n++){
+	total = 5;	
+	for(n=1; n<(numero*0.5); n++){
 		estrellas += "<span class='fa fa-star'></span>";
+		total--;
 	}
 	
 	/*Media estrella para la parte fraccionaria*/
-	if((numero%1)*10 >= 5){estrellas+="<span class='fa fa-star-half'></span>";}
+	if(((numero%1)*10) >= 5){
+		estrellas+="<span class='fa fa-star-half-o'></span>";
+		total--;
+	}
 	
+	for(n=0;n<total;n++){
+		estrellas+="<span class='fa fa-star-o'></span>"
+	}
 	/*La puntuación entre ()*/
 	estrellas+="<span id='valor'>&nbsp;&nbsp;("+peliculas[pag]['results'][indice]['vote_average']+")</span>";
-	return estrellas; 
+	return estrellas;
 }
 
 //Actualizamos el contenido html con los datos del array peliculas.
@@ -149,14 +157,16 @@ function gen_bg_img(mF, col){
 			actualizar_fondo(event.data);
 			imagenes[event.data] = 1;
 		}
+		var fin = false;
 		for(i=0;i<imagenes.length;i++){
-			if(imagenes[i] == 0){
+			if(imagenes[i] == 0){				
 				break;
 			}else{
-				var fin = true;
+				fin = true;
 			}
 			if(fin){
 				w_bg_pics_load.terminate();
+				w_bg_pics_load = undefined;
 				break;
 			}
 		}

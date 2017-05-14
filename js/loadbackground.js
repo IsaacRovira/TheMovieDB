@@ -1,8 +1,8 @@
 //<![CDATA[
 
 function updatebackgroundpics(){	
-	postMessage(Math.floor((Math.random() * 40)));
-	setTimeout("updatebackgroundpics()", 200);
+	postMessage(Math.floor((Math.random() * 20)));
+	setTimeout("updatebackgroundpics()", 75);
 }
 updatebackgroundpics();
 //]]>
