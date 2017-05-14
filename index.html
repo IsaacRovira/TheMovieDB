@@ -20,53 +20,49 @@
 </style>
 -->
 </head>
-<body>
+<body>	
     <script src="js/main.js"></script>	
-	<div id="contenedor">
-    <div class = "header">
+	
+	<div class="transp col-20" id="contenedor">		
         <div class="row">
-            <div class="header col-12">				
-				<div class="title"><h1>The Film Finder</h1></div>
-				<img src="img/293x302-powered-by-square-green.png" id="logo_img" onclick="loadfilms();">
-            </div>        
-        </div>
-    </div>
-        <div class="row">
-            <div class="menu col-12">                    
-				<div class = "boton" id="ant" onclick="Anterior();">				
-					ANTERIOR
+            <div class="header col-20">
+				<div class="col-11">					
+					<span class="title col-10"><h1>The Film Finder</h1></span>
+					<img class="col-1" src="img/293x302-powered-by-square-blue.png" id="logo_img" onclick="loadfilms();">					
 				</div>
-				<div class = "boton" id="sig" onclick="Siguiente()";>
-					SIGUIENTE
-				</div>
-            </div>
-        </div>    
-        <div class="row">    
-            <div class="pic col-6" id="pic">				
-                <img src="" alt="Film cover here1" id="coverpic" class="picture">
-            </div>
-            <div class="descp col-12">
-                    <div id="titulo"></div>
-					<div id="varios">Año; Tipo;</div>
-                    <div id="sinopsis">Sinopsis</div>
-					<div id="info" href="">+Info</div>
-            </div>
-        </div>
-		<div class="row">
-			<div class="footer col-12">				
-				<p class="footer_text"><small>Powered by The Movie DB API.</small></p>
-				<p class="footer_text"><small>Created by Isaac Rovira</small></p>
-				<p class="footer_text"><small>IFP - DAW (3º Semestre 2017) - Desarrollo en entorno cliente.</small></p>
-                </div>
+					<div class = "boton col-3" id="ant" onclick="Anterior();">ANT</div>
+					<div class = "boton col-3" id="sig" onclick="Siguiente();">SIG</div>
 			</div>
+        </div>	
+    <div class="row">
+		<div class="col-20">
+		<div class="col-20" id="smallpics"></div>
+		<div id="contenedor2" class="col-7">            
+			<img src="" alt="Film cover here1" id="pic" class="col-7">
+		</div>
+		<div class="col-10" id="contenedor3">            
+				<div class="col-13" id="titulo"></div><br>
+				<div class="col-13" id="varios">Año; Tipo;</div><br>
+				<div class="col-13" id="sinopsis">Sinopsis</div><br>
+				<div class="col-3" id="info" href="">+Info</div>
+        </div>
 		</div>
 	</div>
+	<div class="row">		
+		<div class="footer col-20">			
+			<p class="footer_text"><small>Powered by The Movie DB API.</small></p>
+			<p class="footer_text"><small>Created by Isaac Rovira</small></p>
+			<p class="footer_text"><small>IFP - DAW (3º Semestre 2017) - Desarrollo en entorno cliente.</small></p>
+		</div>
+	</div>
+	</div>	
 </body>
     <script type="text/javascript">
         <!--
         getConfig();
         loadfilms();
+		gen_bg_img(20,4);		
         /*alert(config['images']['secure_base_url'] + config['images']['poster_sizes'][6] + peliculas['results'][indice]['poster_path']);*/
-        -->   
+        -->
     </script>
 </html>
