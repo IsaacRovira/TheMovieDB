@@ -7,25 +7,10 @@
     <meta name="author" content="Isaac Rovira" />
     <link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!--
-<style>
-.movie {
-    float: left;
-    margin: 5px;
-    padding: 15px;
-    max-width: 300px;
-    height: 300px;
-    border: 1px solid black;
-}
-</style>
--->
 </head>
-<body>
-	
+<body>	
     <script src="js/main.js"></script>	
-	
-	<div class="transp col-20" id="contenedor">
-		<div class="col-20" id="smallpics"></div>
+	<div class="transp col-20" id="contenedor">		
         <div class="row">
             <div class="header col-20">
 				<div class="col-11">					
@@ -36,32 +21,25 @@
 					<div class = "boton col-3" id="sig" onclick="Siguiente();"><i class="fa fa-caret-right" aria-hidden="true"></i></div>
 			</div>
         </div>	
-    <div class="row">
-		<div class="col-20">		
-		<div id="contenedor2" class="col-7">            
-			<img src="" alt="Film cover here1" id="pic" class="col-7">
-		</div>
-		<div class="col-10" id="contenedor3">            
-				<div class="col-13" id="titulo"></div><br>
-				<div class="col-13" id="varios">Año; Tipo;</div><br>
-				<div class="col-13" id="sinopsis">Sinopsis</div><br>
-				<div class="col-3" id="info"><i class="fa fa-info-circle" aria-hidden="true" onclick="info();"></i></div>
-        </div>
-		</div>
+    <div class="row">		
+			<div class="col-20" id="smallpics"></div>
 	</div>
-	<div class="row">		
+	
+	<div class="row">	
 		<div class="footer col-20">
 			<div class="footer-text" id="buscar">Buscar: <input type="text" id="btitulo" onmouseout="comprobar(event)" onmouseover="comprobar(event);" onkeyup="comprobar(event);"></div>
 			<p class="footer_text"><small>Powered by The Movie DB API.</small></p>
 			<p class="footer_text"><small>Created by Isaac Rovira</small></p>
 			<p class="footer_text"><small>IFP - DAW (3º Semestre 2017) - Desarrollo en entorno cliente.</small></p>				
 		</div>
-	</div>
 	</div>	
-</body>
-    <script type="text/javascript">
+	</div>
+	<script type="text/javascript">
         <!--
-		
-        -->
-    </script>
+			//Inicio scrip...
+			getConfig();
+			loadfilms();			
+			-->
+    </script>	
+</body>
 </html>

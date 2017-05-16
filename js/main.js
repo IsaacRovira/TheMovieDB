@@ -18,6 +18,20 @@ xhttp.open("GET", "https://api.themoviedb.org/3/discover/movie?sort_by=popularit
 "vote_average":6.8
 */
 
+//Variables globales
+	var config;
+	var genres;
+	var pag = 0;
+	var indice = 0;
+	var peliculas=[];
+	var xhttp;
+	var worker;
+	var w_bg_pics_update;
+	var w_bg_pics_load;
+	var w_comp;
+	var totPag = 0;
+	var totFilms = 0;
+
 //Capturamos los parámetros de configuración de la web
 function getConfig() {
 	xhttp = new XMLHttpRequest();
@@ -96,19 +110,7 @@ function estrella(numero){
 
 //Actualizamos el contenido html con los datos del array peliculas.
 function actualizar(){
-	var text;
-	/*Titulo*/	
-	document.getElementById("titulo").innerHTML = "<h1>"+peliculas[pag]['results'][indice]["title"]+"</h1>"; 	
 	
-	/*Genero, Año y Puntuación*/	
-	document.getElementById("varios").innerHTML = "<span id='genero'>" + genero(peliculas[pag]['results'][indice]['genre_ids'],true)[0] + "</span><span class='fa fa-calendar' aria-hidden='true'id='fecha'> " +  peliculas[pag]['results'][indice]['release_date'].substr(0,4) + "</span><span id='valoracion'>" + estrella(peliculas[pag]['results'][indice]['vote_average'])+ "</span>";
-	
-	/*Sinopsis*/
-	document.getElementById("sinopsis").innerHTML = "<span>" + peliculas[pag]["results"][indice]["overview"] + "</span>";
-
-	/*Imagen1*/
-	text = config['images']['secure_base_url'] + config['images']['poster_sizes'][6] + peliculas[pag]['results'][indice]['poster_path'];
-	document.getElementById('pic').setAttribute("src", text);		
 }
 
 function info(){
@@ -117,74 +119,8 @@ function info(){
 	window.blur();
 	window.open(text, "+Info", "toolbar=0,titlebar=0", false);
 }
-
-function randomfilm(){
-	var pn = Math.floor((Math.random() * peliculas.length-1));		
-	var fn = Math.floor((Math.random() * (peliculas[pn]['results'].length -1)));	
-	return peliculas[pn]['results'][fn]['poster_path'];
-}
-
-function gen_bg_img(mF,col){
-	var datos = [mF, col];	
-	w_bg_pics_load.postMessage(datos);
-	w_bg_pics_load.onmessage = function(event){
-		alert('isaac');
-		document.getElementById("smallpics").innerHTML = event.data;
-	}
-	w_bg_pics_load.onerror = function(e){alert(e.data)}
-	
-	/*
-	var lines="";
-	var num = 0;	
-	do{
-		/*if((num%(mC/mF)) == 0){			
-			lines += '<div class="row">\n';			
-		}		
-		lines += '<img class="sp col-'+col+'" id="sp' + num + '">\n';
-
-		/*if((num%(mC/mF)) == (mC/mF)-1){
-			lines += '</div>\n';
-		}
-
-		num++;
-	}while(num < mF);	
-	document.getElementById("smallpics").innerHTML = lines;
-	numero = num;
-	
-	
-	w_bg_pics_load.onmessage = function(event){
-		var imagenes=[];
-		for(i=0;i<num;i++){
-			imagenes.push(0);
-		}
-		if(imagenes[event.data]==0){
-			actualizar_fondo(event.data);
-			imagenes[event.data] = 1;
-		}
-		var fin = false;
-		for(i=0;i<imagenes.length;i++){
-			if(imagenes[i] == 0){				
-				break;
-			}else{
-				fin = true;
-			}
-			if(fin){
-				w_bg_pics_load.terminate();
-				w_bg_pics_load = undefined;
-				break;
-			}
-		}
-	}
-	*/
-}
-
-function actualizar_fondo(pic){		
-	var valor = config['images']['secure_base_url'] + config['images']['poster_sizes'][3] + randomfilm();	
-	document.getElementById('sp'+ pic).style.backgroundImage = "url('"+valor+"')"; 
-	document.getElementById('sp'+ pic).setAttribute("src", valor);
-}
-
 //Boton siguiente
+
 function Siguiente() {
 	if(indice < peliculas[pag]["results"].length-1){
 		indice++;
@@ -252,8 +188,9 @@ if(typeof(Worker) !== "undefined"){
 	//Browser supports Web worker.
 	w_comp = new Worker('js/comparar.js');
 	worker = new Worker('js/updateinfo.js');
-	w_bg_pics_update = new Worker('js/updatebackground.js');
 	w_bg_pics_load = new Worker('js/loadbackground.js');
+	
+	w_bg_pics_load.postMessage('message');
 	
 	//Escuchamos a los worker.
 	worker.onmessage = function(event){
@@ -268,9 +205,7 @@ if(typeof(Worker) !== "undefined"){
 		}
 	}
 	//Actualizar fondo
-	w_bg_pics_update.onmessage = function(event){
-		actualizar_fondo(event.data);
-	}
+	
 	//Comparar valor
 	w_comp.addEventListener('message',function(event){
 		alert("Estoy funcionando");
@@ -281,33 +216,20 @@ if(typeof(Worker) !== "undefined"){
 		}
 		w_comp.terminate();
 		w_comp = undefined;
-	}, false);	
+	}, false);
 	
+	w_bg_pics_load.onmessage = function(event){		
+		var ruta = config['images']['secure_base_url'] + config['images']['poster_sizes'][6];
+		var line = "";
+		
+		for(n=0;n<event.data.length;n++){
+			line +="<img src='"+ ruta + event.data.results[n].poster_path +"' class='pic col-"+colsizepic+"' id='"+event.data.results[n].id+"'>\n";
+		}
+		document.getElementById('smallpics').innerHTML = line;
+	}
 }else{
 	alert("Your browser does not support Web Workers!");
 }
-
-//Variables globales
-var config;
-var genres;
-var pag = 0;
-var indice = 0;
-var peliculas=[];
-var xhttp;
-var worker;
-var w_bg_pics_update;
-var w_bg_pics_load;
-var w_comp;
-var totPag = 0;
-var totFilms = 0;
-
-
-//Inicio scrip...
-getConfig();
-
-loadfilms();
-
-gen_bg_img(80,2);
 
 
 //]]>

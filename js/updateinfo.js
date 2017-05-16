@@ -1,7 +1,7 @@
 //<![CDATA[
 
 function updatefilms() {	
-	for(var i = 1; i < 1000; i+=5){
+	for(var i = 1; i < 250; i+=5){
 		xhttp = new XMLHttpRequest();	
 		xhttp.open("GET", "https://api.themoviedb.org/4/list/"+ (i+1) +"?language=es-ES&api_key=23cf888d2154b7ea3b81b691334ebcde",false);
 		

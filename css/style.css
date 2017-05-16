@@ -17,32 +17,22 @@
     display: table;	
 }
 
-body{	
-	overflow: hidden;
+body{
 	padding: 0;
 	margin: 0;
 }
 .transp{
 	height: 100vh;
-	width: 100vh;
 	margin: 0em;
-	padding: 0em;	
-	position: fixed;
-	height: 100vh;	
-	width: 100%;;
-	z-index: -1;
+	padding: 0em;
+	width: 100%;	
 	background: -webkit-linear-gradient(0deg, #000000, #d9d9d9);
 	background: -moz-linear-gradient(0deg, #000000, #d9d9d9);
 	background: -o-linear-gradient(0deg, #000000, #d9d9d9);
 	background: linear-gradient(90deg, #090909, #081c24);
 }
 .header{
-	align-content: center;
-	align-items: center;
-	align-self: center;
-	position: relative;	
-	max-height: 8vh;
-	width: 100vh;
+	width: 100%;
 	border: none;	
 	margin: 0;	
 	padding: 0;
@@ -50,11 +40,6 @@ body{
 	background: -moz-linear-gradient(0deg, #ffffff, #081c24);
 	background: -o-linear-gradient(0deg, #ffffff, #081c24);
 	background: linear-gradient(90deg, #ffffff, #081c24);
-	width: 100%;
-	/*
-	
-	background: linear-gradient(90deg, #01d277, #081c24);
-	*/
 }
 #totpag{
 	display: inline-block;
@@ -110,103 +95,18 @@ body{
 	opacity: 0.7;
 	cursor: pointer;	
 }
-#contenedor2{
-	position: relative;
-	float: left;
-	display: block;
-	margin: 2.5em;
-	padding: 0em;
-}
-#pic {
-	position: relative;
-	width: 100%;
-	max-width: 34em;
-	padding: 0em;	
-	display: block;		
-	border: solid gold;
-}
 #smallpics{
 	display: block;
 	float: left;
 	width: auto;
-	position:fixed;
-	width: 100%;
-	z-index: -2;	
+	position:relative;		
 	margin: 0 0 0 0;
-	padding: 0 0 0 0;
-	opacity: 0.25;
-	
+	padding: 0 0 0 0;	
 }
-.sp{	
-	position: static;
+.sp{
 	padding: 0;
 	margin: 0;	
 }
-#contenedor3{	
-	position: relative;
-	float: left;
-	display: block;
-	font-size-adjust: auto;		
-	overflow:hidden;	
-    padding: 0;
-	margin: 1em;    
-    text-align: left;	
-	font-size: 1em;
-	font-size-adjust: auto;
-	font-family:sans-serif;
-	color: white;
-}
-#titulo{
-	padding: 0 0 0 0;
-	float: left;
-	display: inline-block;
-	width: auto;
-}
-#varios{
-	padding: 0em;
-	margin: 0em;
-	display: inline-block;	
-	width: auto;
-	text-align: left;		
-	font-size: 1em;
-	font-size-adjust: auto;
-	font-family:sans-serif;
-	color: white;
-}
-#genero{
-	margin: 2em;
-}
-
-#fecha{
-	text-align: left;
-	margin: 2em 2em 0em 2em;
-}
-#valoracion{	
-	font-size: 1em;
-	text-align: left;		
-	margin: 2em;
-}
-#sinopsis{
-	width: auto;	
-	text-align: justify;
-	margin: 0em;
-	display:inline-block;
-	font-size-adjust: auto;
-}
-
-#info{
-	position: relative;
-	display: block;
-	text-align: left;
-	color:white;
-}
-#info:hover{
-	opacity: 0.7;
-}
-#info:active{
-	opacity: 0.3;
-}
-
 .footer{	
 	position: fixed;
 	top: 93vh;
