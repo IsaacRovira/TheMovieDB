@@ -1,6 +1,5 @@
 //<![CDATA[
-
-function comparar(valor){
+function comparar(valor){	
 	for(n = 0; n < peliculas.length; n++){
 		for(i=0;i<peliculas[n]['results'].length;i++){
 			for(j=0;j<valor.length;j++){
@@ -19,9 +18,10 @@ function comparar(valor){
 	}
 }
 
-self.addEventListener("meessage",function(e){
-	self.postMessage(comparar(e.data));	
+self.addEventListener("message", function(e){	
+	//self.postMessage(e.data);
+	var valor = comparar(e.data);
+	self.postMessage(valor);	
 }, false);
-
 
 //]]>

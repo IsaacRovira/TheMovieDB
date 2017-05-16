@@ -20,10 +20,12 @@
 </style>
 -->
 </head>
-<body>	
+<body>
+	
     <script src="js/main.js"></script>	
 	
-	<div class="transp col-20" id="contenedor">		
+	<div class="transp col-20" id="contenedor">
+		<div class="col-20" id="smallpics"></div>
         <div class="row">
             <div class="header col-20">
 				<div class="col-11">					
@@ -32,12 +34,10 @@
 				</div>
 					<div class = "boton col-3" id="ant" onclick="Anterior();"><i class="fa fa-caret-left" aria-hidden="true"></i></div>
 					<div class = "boton col-3" id="sig" onclick="Siguiente();"><i class="fa fa-caret-right" aria-hidden="true"></i></div>
-					<p id="totpag">Pag: </p><br><p id="totfilms">Peliculas: </p>
 			</div>
         </div>	
     <div class="row">
-		<div class="col-20">
-		<div class="col-20" id="smallpics"></div>
+		<div class="col-20">		
 		<div id="contenedor2" class="col-7">            
 			<img src="" alt="Film cover here1" id="pic" class="col-7">
 		</div>
@@ -51,7 +51,7 @@
 	</div>
 	<div class="row">		
 		<div class="footer col-20">
-			<div class="footer-text" id="buscar">Buscar: <input type="text" id="btitulo" onblur="fin();" onchange="comprobar();"></div>
+			<div class="footer-text" id="buscar">Buscar: <input type="text" id="btitulo" onmouseout="comprobar(event)" onmouseover="comprobar(event);" onkeyup="comprobar(event);"></div>
 			<p class="footer_text"><small>Powered by The Movie DB API.</small></p>
 			<p class="footer_text"><small>Created by Isaac Rovira</small></p>
 			<p class="footer_text"><small>IFP - DAW (3º Semestre 2017) - Desarrollo en entorno cliente.</small></p>				
@@ -61,10 +61,7 @@
 </body>
     <script type="text/javascript">
         <!--
-        getConfig();
-        loadfilms();
-		gen_bg_img(20,4);		
-        /*alert(config['images']['secure_base_url'] + config['images']['poster_sizes'][6] + peliculas['results'][indice]['poster_path']);*/
+		
         -->
     </script>
 </html>

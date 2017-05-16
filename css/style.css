@@ -137,7 +137,8 @@ body{
 	opacity: 0.25;
 	
 }
-.sp{		
+.sp{	
+	position: static;
 	padding: 0;
 	margin: 0;	
 }
@@ -226,8 +227,7 @@ body{
 }
 #buscar{	
 	margin-bottom: 2em;
-	margin-right: 2em;
-	
+	margin-right: 2em;	
 	display: block;
 	float: right;
 	

@@ -17,19 +17,6 @@ xhttp.open("GET", "https://api.themoviedb.org/3/discover/movie?sort_by=popularit
 "video":false
 "vote_average":6.8
 */
-        
-var config;
-var genres;
-var pag = 0;
-var indice = 0;
-var peliculas=[];
-var xhttp;
-var worker;
-var w_bg_pics_update;
-var w_bg_pics_load;
-var w_comp;
-var totPag = 0;
-var totFilms = 0;
 
 //Capturamos los parámetros de configuración de la web
 function getConfig() {
@@ -108,9 +95,9 @@ function estrella(numero){
 }
 
 //Actualizamos el contenido html con los datos del array peliculas.
-function actualizar() {
+function actualizar(){
 	var text;
-	/*Titulo*/
+	/*Titulo*/	
 	document.getElementById("titulo").innerHTML = "<h1>"+peliculas[pag]['results'][indice]["title"]+"</h1>"; 	
 	
 	/*Genero, Año y Puntuación*/	
@@ -121,8 +108,7 @@ function actualizar() {
 
 	/*Imagen1*/
 	text = config['images']['secure_base_url'] + config['images']['poster_sizes'][6] + peliculas[pag]['results'][indice]['poster_path'];
-	document.getElementById('pic').setAttribute("src", text);
-	//document.getElementById('contenedor').style.backgroundImage = "url('"+text+"')";	
+	document.getElementById('pic').setAttribute("src", text);		
 }
 
 function info(){
@@ -138,24 +124,34 @@ function randomfilm(){
 	return peliculas[pn]['results'][fn]['poster_path'];
 }
 
-function gen_bg_img(mF, col){
+function gen_bg_img(mF,col){
+	var datos = [mF, col];	
+	w_bg_pics_load.postMessage(datos);
+	w_bg_pics_load.onmessage = function(event){
+		alert('isaac');
+		document.getElementById("smallpics").innerHTML = event.data;
+	}
+	w_bg_pics_load.onerror = function(e){alert(e.data)}
+	
+	/*
 	var lines="";
 	var num = 0;	
 	do{
 		/*if((num%(mC/mF)) == 0){			
 			lines += '<div class="row">\n';			
-		} */		
+		}		
 		lines += '<img class="sp col-'+col+'" id="sp' + num + '">\n';
 
 		/*if((num%(mC/mF)) == (mC/mF)-1){
 			lines += '</div>\n';
-		}*/
+		}
 
 		num++;
-	}while(num < mF);
-	//alert(lines);
+	}while(num < mF);	
 	document.getElementById("smallpics").innerHTML = lines;
 	numero = num;
+	
+	
 	w_bg_pics_load.onmessage = function(event){
 		var imagenes=[];
 		for(i=0;i<num;i++){
@@ -179,6 +175,7 @@ function gen_bg_img(mF, col){
 			}
 		}
 	}
+	*/
 }
 
 function actualizar_fondo(pic){		
@@ -216,48 +213,48 @@ function Anterior() {
 //Cargamos la primera pagina de pelicualas. Las demas con un worker...
 function loadfilms(){	
 	xhttp = new XMLHttpRequest();	
-	xhttp.open("GET", "https://api.themoviedb.org/4/list/1?language=es-ES&api_key=23cf888d2154b7ea3b81b691334ebcde",false);
-	
+	xhttp.open("GET", "https://api.themoviedb.org/4/list/1?language=es-ES&api_key=23cf888d2154b7ea3b81b691334ebcde",false);	
 	xhttp.send();
-
+	 
 	if (xhttp.readyState === 4 && xhttp.status === 200){
-		try {				
+		try {			
 			peliculas.push(JSON.parse(xhttp.responseText));
-		} catch (e) {
+		}catch (e) {
 			alert("error: " + e.message);
 		}
-	} else {
+	} else {		
 		alert("Status text: " + xhttp.statusText +
 			  " Status state: " + xhttp.readyState +
 			  " Status: " + xhttp.status);
-	}
+	}	
 	actualizar();
 }
 
-function comprobar(){
-	w_comp = new Worker('js/comparar.js');
-	var x = document.getElementById('btitulo');
-	w_comp.postMessage(x.nodeValue);
-	
-	w_comp.onmessage=function(event){
-		if(!event.data){
-			alert("Estoy funcionando");
-			x.setAttribute("color","red");
-			w_comp.terminate();
-			w_comp = undefined;
-		}
-		w_comp.terminate();
-		w_comp = undefined;
-	}
+function comprobar(event){	
+	var evento = event || window.event;
+	switch(evento.type){
+		case 'mouseover':			
+			//alert(evento.type);
+			break;
+		case 'keyup':
+			var x = document.getElementById('btitulo');			
+			w_comp.postMessage(x.value);
+			//alert(x.value);			
+			break;
+		case 'mouseout':
+			break;
+	}	
 }
 
 //Verificamos que podemos lanzar un worker.
 if(typeof(Worker) !== "undefined"){
 	
 	//Browser supports Web worker.
+	w_comp = new Worker('js/comparar.js');
 	worker = new Worker('js/updateinfo.js');
 	w_bg_pics_update = new Worker('js/updatebackground.js');
 	w_bg_pics_load = new Worker('js/loadbackground.js');
+	
 	//Escuchamos a los worker.
 	worker.onmessage = function(event){
 		peliculas.push(event.data);
@@ -270,18 +267,47 @@ if(typeof(Worker) !== "undefined"){
 			worker = undefined;			
 		}
 	}
-	
+	//Actualizar fondo
 	w_bg_pics_update.onmessage = function(event){
 		actualizar_fondo(event.data);
-	}	
+	}
+	//Comparar valor
+	w_comp.addEventListener('message',function(event){
+		alert("Estoy funcionando");
+		if(!event.data){
+			x.setAttribute("color","red");
+			w_comp.terminate();
+			w_comp = undefined;
+		}
+		w_comp.terminate();
+		w_comp = undefined;
+	}, false);	
 	
 }else{
 	alert("Your browser does not support Web Workers!");
 }
 
+//Variables globales
+var config;
+var genres;
+var pag = 0;
+var indice = 0;
+var peliculas=[];
+var xhttp;
+var worker;
+var w_bg_pics_update;
+var w_bg_pics_load;
+var w_comp;
+var totPag = 0;
+var totFilms = 0;
 
 
+//Inicio scrip...
+getConfig();
 
+loadfilms();
+
+gen_bg_img(80,2);
 
 
 //]]>
